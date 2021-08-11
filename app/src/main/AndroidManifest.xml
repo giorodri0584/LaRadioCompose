@@ -3,6 +3,8 @@
     package="com.rodriguez.giomar.laradio">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:name=".LaRadioApplication"
         android:allowBackup="true"
@@ -23,9 +25,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.MediaService">
+        <service android:name=".exoplayer.MusicService">
             <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
     </application>

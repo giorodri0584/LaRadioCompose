@@ -1,4 +1,4 @@
-package com.rodriguez.giomar.laradio.station_list_screen
+package com.rodriguez.giomar.laradio.presentation.station_list_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -8,12 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import com.rodriguez.giomar.laradio.data.entities.Song
 import com.rodriguez.giomar.laradio.model.Station
 
 @Composable
 fun StationCard(
-    station: Station,
-    onStationSelect: (Station) -> Unit
+    station: Song,
+    onStationSelect: (Song) -> Unit
 ) {
     Card(
         elevation = 8.dp,
@@ -25,7 +26,7 @@ fun StationCard(
     ) {
         Image(
             painter = rememberImagePainter(
-                data = station.logUrl,
+                data = station.logoUrl,
                 builder = {
                     crossfade(true)
                 }
