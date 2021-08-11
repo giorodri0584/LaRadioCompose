@@ -1,5 +1,6 @@
 package com.rodriguez.giomar.laradio.data.entities
 
+import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -10,6 +11,7 @@ data class Song(
     val url: String = "",
     val logoUrl: String = ""
 )
+
 
 @Serializable
 data class SongResult(val results: List<Song>)

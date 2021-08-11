@@ -1,10 +1,13 @@
 package com.rodriguez.giomar.laradio.di
 
+import com.rodriguez.giomar.laradio.api.SongApiService
 import com.rodriguez.giomar.laradio.other.Constants.APP_ID
 import com.rodriguez.giomar.laradio.other.Constants.REST_KEY
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ServiceComponent
+import dagger.hilt.android.scopes.ServiceScoped
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -15,11 +18,11 @@ import io.ktor.client.request.*
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ServiceComponent::class)
 object ApiModule {
-    @Singleton
+    @ServiceScoped
     @Provides
-    fun httClient() = HttpClient(CIO) {
+    fun provideHttClient(): HttpClient = HttpClient(CIO) {
         install(JsonFeature) {
             serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
                 prettyPrint = true
@@ -33,7 +36,7 @@ object ApiModule {
         }
     }
 
-    @Singleton
+    @ServiceScoped
     @Provides
-    fun a
+    fun provideSongApiService(httpClient: HttpClient): SongApiService = SongApiService(httpClient)
 }
