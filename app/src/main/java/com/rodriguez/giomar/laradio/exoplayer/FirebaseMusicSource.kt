@@ -39,7 +39,9 @@ class FirebaseMusicSource @Inject constructor(
                 .putString(METADATA_KEY_DISPLAY_DESCRIPTION, song.ciudad)
                 .build()
         }
-        state = STATE_INITIALIZED
+        withContext(Dispatchers.Main) {
+            state = STATE_INITIALIZED
+        }
     }
 
     fun asMediaSource(dataSourceFactory: DefaultDataSourceFactory): ConcatenatingMediaSource {

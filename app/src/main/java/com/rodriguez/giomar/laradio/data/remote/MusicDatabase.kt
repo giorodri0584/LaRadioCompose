@@ -16,9 +16,6 @@ class MusicDatabase
     suspend fun getAllSongs(): List<Song> {
         val songs = mutableListOf<Song>()
         val tempSongs = songApiService.fetchAllSongs()
-        for (song in tempSongs) {
-            songs.add(song)
-        }
-        return songs
+        return tempSongs
     }
 }

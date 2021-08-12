@@ -17,11 +17,11 @@ class SongApiService
 )
 {
     suspend fun fetchAllSongs(): List<Song> {
-        var songs: List<Song>
+        //var songs: List<Song>
         val result: SongResult = httpClient.get("$BASE_URL/Stations")
-        withContext(Dispatchers.IO) {
-            songs = result.results
-        }
-        return songs
+//        withContext(Dispatchers.Main) {
+//            songs = result.results
+//        }
+        return result.results
     }
 }
