@@ -2,12 +2,12 @@ package com.rodriguez.giomar.laradio.presentation.station_list_screen
 
 import android.support.v4.media.MediaMetadataCompat
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -26,24 +26,10 @@ fun StationListScreen(
     onStationSelect: (Song) -> Unit
 ) {
     val cities = listOf<String>("Santiago", "Santo Domingo")
-    // Remember a SystemUiController
-    val systemUiController = rememberSystemUiController()
-    val useDarkIcons = MaterialTheme.colors.isLight
-
-    SideEffect {
-        // Update all of the system bar colors to be transparent, and use
-        // dark icons if we're in light theme
-        systemUiController.setSystemBarsColor(
-            color = Color.Transparent,
-            darkIcons = useDarkIcons
-        )
-
-        // setStatusBarsColor() and setNavigationBarsColor() also exist
-    }
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF121212))
+            .background(MaterialTheme.colors.background)
     ) {
         LazyColumn(
             modifier = Modifier
@@ -54,7 +40,7 @@ fun StationListScreen(
             items(cities) { city ->
                 Text(
                     text = city,
-                    style = MaterialTheme.typography.body1,
+                    color = Color.White,
                     modifier = Modifier
                         .padding(start = 8.dp, top = 8.dp)
                 )
@@ -63,16 +49,19 @@ fun StationListScreen(
                 }
             }
         }
-        Row (
-            modifier = Modifier
-                .background(Color(0xFF212121))
-                .height(70.dp)
-                .fillMaxWidth()
-                .weight(0.1f),
-                //.border(1.dp, Color.Black),
-            verticalAlignment = Alignment.CenterVertically
+        Surface(
+            elevation = 6.dp
         ) {
-            MiniPlayerComponent(currentSong)
+            Row (
+                modifier = Modifier
+                    .height(70.dp)
+                    .fillMaxWidth()
+                    .weight(0.1f),
+                //.border(1.dp, Color.Black),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                MiniPlayerComponent(currentSong)
+            }
         }
     }
     

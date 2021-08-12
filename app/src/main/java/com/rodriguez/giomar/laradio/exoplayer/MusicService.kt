@@ -164,6 +164,10 @@ class MusicService : MediaBrowserServiceCompat() {
             }
         }
     }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return START_STICKY
+    }
 }
 
 

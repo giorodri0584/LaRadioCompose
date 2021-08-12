@@ -17,7 +17,7 @@ fun StationCard(
     onStationSelect: (Song) -> Unit
 ) {
     Card(
-        elevation = 8.dp,
+        elevation = 16.dp,
         modifier = Modifier
             .size(150.dp)
             .clickable {
