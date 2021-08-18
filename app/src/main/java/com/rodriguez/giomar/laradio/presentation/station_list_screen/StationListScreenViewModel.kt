@@ -32,7 +32,7 @@ class StationListScreenViewModel
     val isConnected = musicServiceConnection.isConnected
     val networkError = musicServiceConnection.networkError
     val currentPlayingSong = musicServiceConnection.curPlayingSong
-    private val playbackState = musicServiceConnection.playbackState
+    val playbackState = musicServiceConnection.playbackState
     init {
         //_mediaItems.postValue(Resource.loading(null))
         //mediaItems.value = Resource.loading(null)

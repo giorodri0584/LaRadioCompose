@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rodriguez.giomar.laradio.data.entities.Song
+import com.rodriguez.giomar.laradio.exoplayer.isPlaying
 import com.rodriguez.giomar.laradio.model.Station
 import com.rodriguez.giomar.laradio.other.Resource
 import com.rodriguez.giomar.laradio.other.Status
@@ -28,10 +29,11 @@ fun Navigation() {
             val viewModel = hiltViewModel<StationListScreenViewModel>()
             val mediaItems = viewModel.mediaItems.value
             val currentSong = viewModel.currentPlayingSong.observeAsState()
+            val playbackState = viewModel.playbackState.observeAsState()
             when(mediaItems.status) {
                 Status.SUCCESS -> {
                     mediaItems.data?.let { songs ->
-                        StationListScreen(stations = songs, currentSong = currentSong.value) { song ->
+                        StationListScreen(stations = songs, currentSong = currentSong.value, playbackState = playbackState.value) { song ->
                             viewModel.playOrToggleSong(song)
                         }
                     }

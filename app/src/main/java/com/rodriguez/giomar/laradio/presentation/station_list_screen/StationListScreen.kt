@@ -1,6 +1,7 @@
 package com.rodriguez.giomar.laradio.presentation.station_list_screen
 
 import android.support.v4.media.MediaMetadataCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import com.rodriguez.giomar.laradio.model.Station
 fun StationListScreen(
     stations: List<Song>,
     currentSong: MediaMetadataCompat?,
+    playbackState: PlaybackStateCompat?,
     onStationSelect: (Song) -> Unit
 ) {
     val cities = listOf<String>("Santiago", "Santo Domingo")
@@ -56,11 +58,13 @@ fun StationListScreen(
                 modifier = Modifier
                     .height(70.dp)
                     .fillMaxWidth()
-                    .weight(0.1f),
+                    .weight(0.1f)
+                    .padding(horizontal = 16.dp),
                 //.border(1.dp, Color.Black),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                MiniPlayerComponent(currentSong)
+                MiniPlayerComponent(song = currentSong, playbackState = playbackState)
             }
         }
     }
